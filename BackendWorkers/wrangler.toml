@@ -1,0 +1,33 @@
+name = "world-cup-predictor-api"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+# nodejs_compat enables a few Node built-ins; we mainly rely on Web Crypto.
+compatibility_flags = ["nodejs_compat"]
+
+# ---------------------------------------------------------------------------
+# D1 database binding. Create it once with:
+#   wrangler d1 create worldcup
+# then paste the printed database_id below.
+# ---------------------------------------------------------------------------
+[[d1_databases]]
+binding = "DB"
+database_name = "worldcup"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+# ---------------------------------------------------------------------------
+# Cron trigger replaces the Node setInterval settlement loop.
+# Runs every 2 minutes: refresh fixtures + settle finished matches.
+# ---------------------------------------------------------------------------
+[triggers]
+crons = ["*/2 * * * *"]
+
+# ---------------------------------------------------------------------------
+# Non-secret vars. Secrets (TELEGRAM_BOT_TOKEN, FOOTBALL_API_KEY) are set with:
+#   wrangler secret put TELEGRAM_BOT_TOKEN
+#   wrangler secret put FOOTBALL_API_KEY
+# ---------------------------------------------------------------------------
+[vars]
+FRONTEND_URL = "*"
+AUTH_REQUIRE_SIGNATURE = "true"
+FOOTBALL_API_BASE = "https://api.football-data.org/v4"
+FOOTBALL_COMPETITION = "WC"

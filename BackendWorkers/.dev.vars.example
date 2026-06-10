@@ -1,0 +1,9 @@
+# Local secrets for `wrangler dev`. Copy to `.dev.vars` (gitignored) and fill in.
+# In production these are set via `wrangler secret put <NAME>` instead.
+
+TELEGRAM_BOT_TOKEN=123456:ABC-YOUR-BOT-TOKEN
+FOOTBALL_API_KEY=
+
+# For local browser testing without Telegram, set to "false".
+# Overrides the wrangler.toml [vars] value during `wrangler dev`.
+AUTH_REQUIRE_SIGNATURE=false

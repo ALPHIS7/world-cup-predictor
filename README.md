@@ -9,6 +9,13 @@ JavaScript + Vite on the frontend and Node.js + Express + SQLite on the backend.
 > daily rewards, missions, achievements, referrals and seasonal rankings can be
 > added without rewrites (see [Extending](#-extending-future-features)).
 
+> **Two backends, same API.** Pick one:
+> - **`Backend/`** — Node.js + Express + SQLite. Best for a VPS / Render / Railway / Fly.io.
+> - **`BackendWorkers/`** — Cloudflare Workers + Hono + D1, with a Cron Trigger for
+>   settlement. Fully serverless on Cloudflare. See [`BackendWorkers/README.md`](./BackendWorkers/README.md).
+>
+> The frontend is identical for both — just point `VITE_API_BASE` at whichever you deploy.
+
 ---
 
 ## ✨ Features
