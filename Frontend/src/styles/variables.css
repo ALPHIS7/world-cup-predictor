@@ -1,0 +1,61 @@
+/* Design tokens. Light + dark themes via [data-theme]. Telegram theme params
+   (--tg-*) override a few of these at runtime via theme.js when available. */
+
+:root {
+  /* Brand palette - playful football */
+  --brand: #16a34a;          /* pitch green */
+  --brand-2: #22c55e;
+  --brand-grad: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  --accent-gold: #f9b414;
+  --accent-red: #ef4444;
+  --accent-blue: #3a86ff;
+  --accent-purple: #8338ec;
+
+  /* Radii / spacing / shadows */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-pill: 999px;
+  --gap: 14px;
+  --pad: 16px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.12);
+  --shadow-glow: 0 8px 24px rgba(34,197,94,0.35);
+
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+
+  /* Telegram param fallbacks (overridden at runtime when in Telegram). */
+  --tg-button: var(--brand);
+  --tg-button-text: #ffffff;
+}
+
+/* ---------- LIGHT ---------- */
+:root[data-theme='light'] {
+  --bg: #f4f7f6;
+  --bg-2: #eaf0ee;
+  --surface: #ffffff;
+  --surface-2: #f6f8f8;
+  --text: #10241c;
+  --text-soft: #4b5d56;
+  --hint: #8a9a93;
+  --border: rgba(16,36,28,0.08);
+  --skeleton: #e6ecea;
+  --skeleton-shine: #f3f7f6;
+}
+
+/* ---------- DARK ---------- */
+:root[data-theme='dark'] {
+  --bg: #0e1512;
+  --bg-2: #0a0f0d;
+  --surface: #16201c;
+  --surface-2: #1c2823;
+  --text: #eafff5;
+  --text-soft: #a9bcb4;
+  --hint: #6f857c;
+  --border: rgba(255,255,255,0.08);
+  --skeleton: #1c2823;
+  --skeleton-shine: #25332d;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
+}
