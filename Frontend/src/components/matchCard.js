@@ -34,12 +34,24 @@ function predictionBadge(pred) {
   return el('div', { class: `pred-badge ${cls}`, text: `${pred.home}–${pred.away} · ${label}` });
 }
 
-// A team column: flag, name, and (when predicting) a score stepper.
-function teamColumn(name, code, side, stepperState) {
-  const children = [
-    el('div', { class: 'team-flag', text: flagEmoji(code) }),
-    el('div', { class: 'team-name', text: name }),
-  ];
+// A team column: flag (real crest image if available, else emoji), name, and
+// (when predicting) a score stepper.
+function teamColumn(name, code, crest, side, stepperState) {
+  const flag = crest
+    ? el('img', {
+        class: 'team-crest',
+        src: crest,
+        alt: name,
+        loading: 'lazy',
+        // If the crest fails to load, fall back to an emoji flag.
+        onError: (e) => {
+          const span = el('div', { class: 'team-flag', text: flagEmoji(code) });
+          e.target.replaceWith(span);
+        },
+      })
+    : el('div', { class: 'team-flag', text: flagEmoji(code) });
+
+  const children = [flag, el('div', { class: 'team-name', text: name })];
   if (stepperState) {
     children.push(scoreStepper(side, stepperState));
   }
@@ -99,11 +111,11 @@ export function MatchCard(match, onSubmit) {
   const state = canPredict ? { home: 0, away: 0 } : null;
 
   const body = el('div', { class: 'match-body' }, [
-    teamColumn(match.homeTeam, match.homeCode, 'home', state),
+    teamColumn(match.homeTeam, match.homeCode, match.homeCrest, 'home', state),
     el('div', { class: 'match-vs' }, [
       resultLine(match) || el('span', { class: 'vs-text', text: 'VS' }),
     ]),
-    teamColumn(match.awayTeam, match.awayCode, 'away', state),
+    teamColumn(match.awayTeam, match.awayCode, match.awayCrest, 'away', state),
   ]);
 
   card.appendChild(header);
