@@ -12,7 +12,7 @@ compatibility_flags = ["nodejs_compat"]
 [[d1_databases]]
 binding = "DB"
 database_name = "worldcup"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "f3b9ba51-cb63-4970-b818-b1f87aa15689"
 
 # ---------------------------------------------------------------------------
 # Cron trigger replaces the Node setInterval settlement loop.
